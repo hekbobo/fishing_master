@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@android:drawable/ic_menu_view"
+        android:title="Home" />
+    
+    <item
+        android:id="@+id/navigation_map"
+        android:icon="@android:drawable/ic_menu_mylocation"
+        android:title="Map" />
+    
+    <!-- Placeholder for center FAB -->
+    <item
+        android:id="@+id/navigation_placeholder"
+        android:icon="@android:drawable/ic_menu_view"
+        android:title=""
+        android:enabled="false"
+        android:visible="true" />
+    
+    <item
+        android:id="@+id/navigation_logbook"
+        android:icon="@android:drawable/ic_menu_agenda"
+        android:title="Logbook" />
+    
+    <item
+        android:id="@+id/navigation_profile"
+        android:icon="@android:drawable/ic_menu_myplaces"
+        android:title="Profile" />
+</menu>
+

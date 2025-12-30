@@ -1,0 +1,678 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_background"
+    android:fitsSystemWindows="true"
+    tools:context=".MainActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        android:paddingBottom="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <!-- Header Section -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp">
+
+                <!-- Profile Image -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/profileCard"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    app:cardCornerRadius="25dp"
+                    app:cardElevation="0dp"
+                    app:cardBackgroundColor="@color/surface_card">
+
+                    <ImageView
+                        android:id="@+id/profileImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        tools:src="@tools:sample/avatars" />
+                </androidx.cardview.widget.CardView>
+
+                <!-- Online Indicator -->
+                <View
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:background="@drawable/online_indicator"
+                    android:layout_alignEnd="@id/profileCard"
+                    android:layout_alignBottom="@id/profileCard" />
+
+                <!-- Greeting Text -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/profileCard"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="16dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/greetingText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="早上好,"
+                        android:textColor="@color/text_secondary"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/userNameText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="亚历克斯"
+                        android:textColor="@color/text_primary"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <!-- Notification Bell -->
+                <FrameLayout
+                    android:id="@+id/notificationIcon"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/bg_surface_card">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        android:src="@android:drawable/ic_popup_reminder"
+                        app:tint="@color/text_primary" />
+
+                    <View
+                        android:layout_width="8dp"
+                        android:layout_height="8dp"
+                        android:layout_gravity="top|end"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/notification_indicator" />
+                </FrameLayout>
+            </RelativeLayout>
+
+            <!-- Weather Card -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_weather_card"
+                android:padding="24dp"
+                android:layout_marginBottom="32dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!-- Location Row -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:src="@android:drawable/ic_menu_mylocation"
+                            app:tint="@color/white" />
+
+                        <TextView
+                            android:id="@+id/locationText"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="8dp"
+                            tools:text="加州太浩湖"
+                            android:textColor="@color/white"
+                            android:textSize="14sp" />
+                            
+                        <ImageView
+                             android:layout_width="24dp"
+                             android:layout_height="24dp"
+                             android:src="@android:drawable/ic_menu_day"
+                             app:tint="@color/white"/>
+
+                    </LinearLayout>
+
+                    <!-- Temperature -->
+                    <TextView
+                        android:id="@+id/temperatureText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        tools:text="24°C"
+                        android:textColor="@color/white"
+                        android:textSize="56sp"
+                        android:textStyle="bold"
+                        android:fontFamily="sans-serif-medium"/>
+
+                    <TextView
+                        android:id="@+id/weatherConditionText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="晴间多云"
+                        android:textColor="@color/white"
+                        android:textSize="14sp"
+                        android:alpha="0.8"
+                        android:layout_marginBottom="24dp"/>
+
+                    <!-- Weather Details Divider -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#33FFFFFF"
+                        android:layout_marginBottom="16dp"/>
+
+                    <!-- Details Row -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:baselineAligned="false">
+
+                        <!-- Wind -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="风速"
+                                android:textColor="@color/white"
+                                android:alpha="0.7"
+                                android:textSize="12sp"/>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:layout_marginTop="4dp"
+                                android:gravity="center_vertical">
+
+                                <ImageView
+                                    android:layout_width="12dp"
+                                    android:layout_height="12dp"
+                                    android:src="@android:drawable/arrow_up_float"
+                                    app:tint="@color/white"
+                                    android:rotation="45"/>
+                                <TextView
+                                    android:id="@+id/windText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    tools:text="12km"
+                                    android:textColor="@color/white"
+                                    android:textStyle="bold"
+                                    android:textSize="16sp"
+                                    android:layout_marginStart="4dp"/>
+                            </LinearLayout>
+                        </LinearLayout>
+
+                         <!-- Water Temp -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="水温"
+                                android:textColor="@color/white"
+                                android:alpha="0.7"
+                                android:textSize="12sp"/>
+
+                            <TextView
+                                android:id="@+id/waterTempText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                tools:text="18°C"
+                                android:textColor="@color/white"
+                                android:textStyle="bold"
+                                android:layout_marginTop="4dp"
+                                android:textSize="16sp"/>
+                        </LinearLayout>
+
+                        <!-- Tide -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="潮汐"
+                                android:textColor="@color/white"
+                                android:alpha="0.7"
+                                android:textSize="12sp"/>
+
+                            <TextView
+                                android:id="@+id/tideText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                tools:text="06:42 AM"
+                                android:textColor="@color/white"
+                                android:textStyle="bold"
+                                android:layout_marginTop="4dp"
+                                android:textSize="16sp"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                    
+                    <!-- Graph Placeholder (Bars) -->
+                    <LinearLayout
+                         android:layout_width="match_parent"
+                         android:layout_height="20dp"
+                         android:orientation="horizontal"
+                         android:gravity="bottom"
+                         android:layout_marginTop="16dp">
+                         
+                         <!-- Just simplified bars as placeholder -->
+                         <View android:layout_width="0dp" android:layout_height="4dp" android:layout_weight="1" android:background="#20FFFFFF" android:layout_margin="2dp"/>
+                         <View android:layout_width="0dp" android:layout_height="6dp" android:layout_weight="1" android:background="#20FFFFFF" android:layout_margin="2dp"/>
+                         <View android:layout_width="0dp" android:layout_height="10dp" android:layout_weight="1" android:background="#30FFFFFF" android:layout_margin="2dp"/>
+                         <View android:layout_width="0dp" android:layout_height="15dp" android:layout_weight="1" android:background="#50FFFFFF" android:layout_margin="2dp"/>
+                         <View android:layout_width="0dp" android:layout_height="8dp" android:layout_weight="1" android:background="#30FFFFFF" android:layout_margin="2dp"/>
+                         <View android:layout_width="0dp" android:layout_height="5dp" android:layout_weight="1" android:background="#20FFFFFF" android:layout_margin="2dp"/>
+                         <View android:layout_width="0dp" android:layout_height="3dp" android:layout_weight="1" android:background="#20FFFFFF" android:layout_margin="2dp"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </FrameLayout>
+
+            <!-- Quick Actions Header -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="快捷功能"
+                android:textColor="@color/text_primary"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Quick Actions Grid -->
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="2"
+                android:rowCount="2"
+                android:alignmentMode="alignMargins"
+                android:columnOrderPreserved="false"
+                android:useDefaultMargins="false">
+
+                <!-- Item 1: Log Catch -->
+                <LinearLayout
+                    android:id="@+id/actionLogCatch"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:background="@drawable/bg_surface_card"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="16dp">
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@android:drawable/ic_menu_edit"
+                        app:tint="@color/primary_blue" 
+                        android:background="#102979FF"
+                        android:padding="6dp"/>
+                    
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginStart="12dp">
+                        
+                        <TextView
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:text="@string/action_log_catch"
+                           android:textColor="@color/text_primary"
+                           android:textStyle="bold"
+                           android:textSize="14sp"/>
+                        <TextView
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:text="@string/action_log_catch_desc"
+                           android:textColor="@color/text_secondary"
+                           android:textSize="11sp"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Item 2: New Trip -->
+                <LinearLayout
+                    android:id="@+id/actionNewTrip"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:background="@drawable/bg_surface_card"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginBottom="16dp">
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@android:drawable/ic_menu_mapmode"
+                        app:tint="@color/action_green"
+                         android:background="#1000C853"
+                        android:padding="6dp"/>
+
+                     <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginStart="12dp">
+                        
+                        <TextView
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:text="@string/action_new_trip"
+                           android:textColor="@color/text_primary"
+                           android:textStyle="bold"
+                           android:textSize="14sp"/>
+                        <TextView
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:text="@string/action_new_trip_desc"
+                           android:textColor="@color/text_secondary"
+                           android:textSize="11sp"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Item 3: My Gear -->
+                <LinearLayout
+                    android:id="@+id/actionMyGear"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:background="@drawable/bg_surface_card"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginEnd="8dp">
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@android:drawable/ic_menu_agenda"
+                        app:tint="@color/action_orange"
+                         android:background="#10FF6D00"
+                        android:padding="6dp"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginStart="12dp">
+                        
+                        <TextView
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:text="@string/action_my_gear"
+                           android:textColor="@color/text_primary"
+                           android:textStyle="bold"
+                           android:textSize="14sp"/>
+                        <TextView
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:text="@string/action_my_gear_desc"
+                           android:textColor="@color/text_secondary"
+                           android:textSize="11sp"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Item 4: Community -->
+                <LinearLayout
+                    android:id="@+id/actionCommunity"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:background="@drawable/bg_surface_card"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginStart="8dp">
+
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@android:drawable/ic_menu_share"
+                        app:tint="@color/action_purple"
+                         android:background="#10AA00FF"
+                        android:padding="6dp"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginStart="12dp">
+                        
+                        <TextView
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:text="@string/action_community"
+                           android:textColor="@color/text_primary"
+                           android:textStyle="bold"
+                           android:textSize="14sp"/>
+                        <TextView
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:text="@string/action_community_desc"
+                           android:textColor="@color/text_secondary"
+                           android:textSize="11sp"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+            </GridLayout>
+
+            <!-- Recent Catches Header -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="16dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/header_recent_catches"
+                    android:textColor="@color/text_primary"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/viewAllText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/action_view_all"
+                    android:textColor="@color/primary_blue"
+                    android:textSize="14sp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <!-- Recent Catches RecyclerView -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recentCatchesRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/item_recent_catch" />
+
+        </LinearLayout>
+    </ScrollView>
+    
+    <!-- Custom Bottom Navigation -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent">
+        
+        <!-- Bottom Bar Background -->
+        <View
+            android:id="@+id/bottomBarBg"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:background="@color/surface_card"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <!-- FAB (Add Button) -->
+        <FrameLayout
+            android:id="@+id/centerFab"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/bg_add_button"
+            android:elevation="6dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent">
+            
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="center"
+                 android:src="@android:drawable/ic_input_add"
+                app:tint="@color/white"/>
+        </FrameLayout>
+        
+        <!-- Icons Container -->
+         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            app:layout_constraintBottom_toBottomOf="parent">
+            
+            <!-- Home -->
+            <LinearLayout
+                android:id="@+id/navHome"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+                 <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@android:drawable/ic_dialog_email"
+                    app:tint="@color/primary_blue"/>
+                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nav_home"
+                    android:textSize="10sp"
+                    android:textColor="@color/primary_blue"
+                    android:layout_marginTop="4dp"/>
+             </LinearLayout>
+             
+              <!-- Map -->
+            <LinearLayout
+                android:id="@+id/navMap"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:alpha="0.6">
+                 <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@android:drawable/ic_dialog_map"
+                    app:tint="@color/white"/>
+                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nav_map"
+                    android:textSize="10sp"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="4dp"/>
+             </LinearLayout>
+             
+             <!-- Spacer for FAB -->
+             <View
+                 android:layout_width="0dp"
+                 android:layout_height="match_parent"
+                 android:layout_weight="1"/>
+                 
+              <!-- Log -->
+            <LinearLayout
+                android:id="@+id/navLog"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:alpha="0.6">
+                 <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@android:drawable/ic_menu_sort_by_size"
+                    app:tint="@color/white"/>
+                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nav_log"
+                    android:textSize="10sp"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="4dp"/>
+             </LinearLayout>
+             
+              <!-- Profile -->
+            <LinearLayout
+                android:id="@+id/navProfile"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:alpha="0.6">
+                 <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@android:drawable/ic_menu_myplaces"
+                    app:tint="@color/white"/>
+                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nav_profile"
+                    android:textSize="10sp"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="4dp"/>
+             </LinearLayout>
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
