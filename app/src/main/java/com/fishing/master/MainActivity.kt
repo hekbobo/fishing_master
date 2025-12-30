@@ -1,105 +1,51 @@
 package com.fishing.master
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fishing.master.adapter.RecentCatchesAdapter
 import com.fishing.master.databinding.ActivityMainBinding
 import com.fishing.master.model.FishCatch
 import com.fishing.master.model.WeatherData
+import com.fishing.master.viewmodel.MainViewModel
 import java.util.Calendar
 
 class MainActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityMainBinding
 
+    private val viewModel: MainViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+    // ... onCreate code ...
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setupHeader()
-        setupWeatherCard()
-        setupQuickActions()
-        setupRecentCatches()
+        // Setup observers
+        viewModel.weatherData.observe(this) { weatherData ->
+            updateWeatherCard(weatherData)
+        }
+        viewModel.recentCatches.observe(this) { catches ->
+            updateRecentCatches(catches)
+        }
+        
         setupCustomBottomNavigation()
     }
 
-    private fun setupHeader() {
-        // Set greeting based on time of day
-        val calendar = Calendar.getInstance()
-        val hour = calendar.get(Calendar.HOUR_OF_DAY)
-        val greetingResId = when (hour) {
-            in 5..11 -> R.string.greeting_morning
-            in 12..17 -> R.string.greeting_afternoon
-            in 18..20 -> R.string.greeting_evening
-            else -> R.string.greeting_night
-        }
-        binding.greetingText.setText(greetingResId)
-        binding.userNameText.setText(R.string.user_name)
+    // ... setupHeader ...
 
-        // Set profile image placeholder
-        binding.profileImage.setImageResource(android.R.drawable.ic_menu_myplaces)
-
-        // Handle notification click
-        binding.notificationIcon.setOnClickListener {
-            android.widget.Toast.makeText(this, "Notifications clicked", android.widget.Toast.LENGTH_SHORT).show()
-        }
+    private fun updateWeatherCard(data: WeatherData) {
+        binding.locationText.text = data.location
+        binding.temperatureText.text = data.temperature
+        binding.weatherConditionText.text = data.condition
+        binding.windText.text = data.windSpeed
+        binding.waterTempText.text = data.waterTemp
+        binding.tideText.text = data.tideTime
     }
 
-    private fun setupWeatherCard() {
-        // Manual data setting as per design
-        binding.locationText.setText(R.string.location_tahoe)
-        binding.temperatureText.text = "24°C"
-        binding.weatherConditionText.setText(R.string.weather_sunny_intervals)
-        binding.windText.text = "12km"
-        binding.waterTempText.text = "18°C"
-        binding.tideText.text = "06:42 AM"
-    }
+    // ... setupQuickActions ...
 
-    private fun setupQuickActions() {
-        val clickListener = android.view.View.OnClickListener { view ->
-            val message = when (view.id) {
-                R.id.actionLogCatch -> "Log Catch clicked"
-                R.id.actionNewTrip -> "New Trip clicked"
-                R.id.actionMyGear -> "My Gear clicked"
-                R.id.actionCommunity -> "Community clicked"
-                else -> "Action clicked"
-            }
-            android.widget.Toast.makeText(this, message, android.widget.Toast.LENGTH_SHORT).show()
-        }
-
-        binding.actionLogCatch.setOnClickListener(clickListener)
-        binding.actionNewTrip.setOnClickListener(clickListener)
-        binding.actionMyGear.setOnClickListener(clickListener)
-        binding.actionCommunity.setOnClickListener(clickListener)
-    }
-
-    private fun setupRecentCatches() {
-        val catches = listOf(
-            FishCatch(
-                id = "1",
-                fishName = "大口黑鲈",
-                imageResId = android.R.drawable.ic_menu_gallery
-            ),
-            FishCatch(
-                id = "2",
-                fishName = "虹鳟",
-                imageResId = android.R.drawable.ic_menu_gallery
-            ),
-            FishCatch(
-                id = "3",
-                fishName = "蓝鳃太阳鱼",
-                imageResId = android.R.drawable.ic_menu_gallery
-            ),
-            FishCatch(
-                id = "4",
-                fishName = "鲶鱼",
-                imageResId = android.R.drawable.ic_menu_gallery
-            )
-        )
-
+    private fun updateRecentCatches(catches: List<FishCatch>) {
         val adapter = RecentCatchesAdapter(catches)
         binding.recentCatchesRecyclerView.adapter = adapter
         
@@ -126,7 +72,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.navHome.setOnClickListener { selectItem(it, "Home") }
-        binding.navMap.setOnClickListener { selectItem(it, "Map") }
+        binding.navMap.setOnClickListener { 
+            // Navigate to MapActivity
+            val intent = android.content.Intent(this, MapActivity::class.java)
+            startActivity(intent)
+        }
         binding.navLog.setOnClickListener { selectItem(it, "Log") }
         binding.navProfile.setOnClickListener { selectItem(it, "Profile") }
 

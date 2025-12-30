@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp"
+    android:layout_marginHorizontal="4dp"
+    app:cardBackgroundColor="#212429"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="0dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="12dp">
+
+        <!-- Image with Rating -->
+        <FrameLayout
+            android:layout_width="80dp"
+            android:layout_height="80dp">
+
+            <ImageView
+                android:id="@+id/spotImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@android:drawable/ic_menu_gallery" />
+            
+            <!-- Rating Badge -->
+            <LinearLayout
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:orientation="horizontal"
+                 android:background="@drawable/bg_tag"
+                 android:backgroundTint="#CC000000"
+                 android:paddingHorizontal="6dp"
+                 android:paddingVertical="2dp"
+                 android:layout_gravity="top|start"
+                 android:layout_margin="4dp"
+                 android:gravity="center_vertical">
+                 
+                 <ImageView
+                     android:layout_width="10dp"
+                     android:layout_height="10dp"
+                     android:src="@android:drawable/btn_star_big_on"
+                     app:tint="#FFC107"/>
+                     
+                 <TextView
+                     android:id="@+id/ratingText"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     tools:text="4.8"
+                     android:textColor="@color/white"
+                     android:textSize="10sp"
+                     android:textStyle="bold"
+                     android:layout_marginStart="2dp"/>
+            </LinearLayout>
+        </FrameLayout>
+
+        <!-- Details -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_marginStart="12dp"
+            android:orientation="vertical"
+            android:gravity="center_vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                
+                <TextView
+                    android:id="@+id/spotName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    tools:text="Emerald Bay"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+                    
+                <TextView
+                    android:id="@+id/spotDistance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="2.3 km"
+                    android:textColor="#03A9F4"
+                    android:textSize="12sp"
+                    android:background="#2003A9F4"
+                    android:paddingHorizontal="6dp"
+                    android:paddingVertical="2dp"
+                    android:layout_marginStart="8dp"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/spotDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:text="North side, near the old dock."
+                android:textColor="#A0A0A0"
+                android:textSize="12sp"
+                android:layout_marginTop="4dp"
+                android:maxLines="1"
+                android:ellipsize="end"/>
+
+            <!-- Tags -->
+            <LinearLayout
+                android:id="@+id/tagsContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:id="@+id/tag1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="PUBLIC"
+                    android:textColor="#A0A0A0"
+                    android:textSize="9sp"
+                    android:background="@drawable/bg_tag"
+                    android:paddingHorizontal="6dp"
+                    android:paddingVertical="3dp"
+                    android:layout_marginEnd="6dp"
+                    android:textAllCaps="true"/>
+                    
+                 <TextView
+                    android:id="@+id/tag2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="CARP"
+                    android:textColor="#A0A0A0"
+                    android:textSize="9sp"
+                    android:background="@drawable/bg_tag"
+                    android:paddingHorizontal="6dp"
+                    android:paddingVertical="3dp"
+                    android:layout_marginEnd="6dp"
+                    android:textAllCaps="true"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
