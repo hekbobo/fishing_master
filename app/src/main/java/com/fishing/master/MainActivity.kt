@@ -78,14 +78,18 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
         binding.navLog.setOnClickListener { selectItem(it, "Log") }
-        binding.navProfile.setOnClickListener { selectItem(it, "Profile") }
+        binding.navProfile.setOnClickListener { 
+            // Navigate to ProfileActivity
+            val intent = android.content.Intent(this, ProfileActivity::class.java)
+            startActivity(intent)
+        }
 
         // Set home as selected by default
         binding.navHome.alpha = 1.0f
 
         // Handle center FAB click
         binding.centerFab.setOnClickListener {
-            android.widget.Toast.makeText(this, "Add New Item clicked", android.widget.Toast.LENGTH_SHORT).show()
+            // Navigate to Fishing Location Activity
         }
     }
 }

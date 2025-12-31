@@ -24,4 +24,18 @@ class MapViewModel : ViewModel() {
             _fishingSpots.value = spots
         }
     }
+    
+    /**
+     * 根据当前位置更新附近的钓鱼点
+     * @param latitude 纬度
+     * @param longitude 经度
+     */
+    fun updateFishingSpotsNearby(latitude: Double, longitude: Double) {
+        viewModelScope.launch {
+            // 在实际应用中，这里会调用API根据位置获取附近的钓鱼点
+            // 现在我们只是模拟这个功能
+            val spots = repository.getFishingSpotsNearby(latitude, longitude)
+            _fishingSpots.value = spots
+        }
+    }
 }
